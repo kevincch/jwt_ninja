@@ -65,14 +65,26 @@ as
     end if;
 
     if g_header_alg = 'HS256' then
-      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH256, utl_raw.cast_to_raw(l_set_key))));
+--      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH256, utl_raw.cast_to_raw(l_set_key))));
+      return base64this(utl_raw.cast_to_varchar2(oos_util_crypto.mac(p_src => utl_raw.cast_to_raw(p_string), p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
+                                   p_key => utl_raw.cast_to_raw(l_set_key)
+                                )));
     elsif g_header_alg = 'HS384' then
-      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH384, utl_raw.cast_to_raw(l_set_key))));
+--      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH384, utl_raw.cast_to_raw(l_set_key))));
+      return base64this(utl_raw.cast_to_varchar2(oos_util_crypto.mac(p_src => utl_raw.cast_to_raw(p_string), p_typ => 4, -- oos_util_crypto.gc_hmac_sh384
+                                   p_key => utl_raw.cast_to_raw(l_set_key)
+                                )));
     elsif g_header_alg = 'HS512' then
-      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH512, utl_raw.cast_to_raw(l_set_key))));
+--      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH512, utl_raw.cast_to_raw(l_set_key))));
+      return base64this(utl_raw.cast_to_varchar2(oos_util_crypto.mac(p_src => utl_raw.cast_to_raw(p_string), p_typ => 5, -- oos_util_crypto.gc_hmac_sh512
+                                   p_key => utl_raw.cast_to_raw(l_set_key)
+                                )));
     else
       g_header_alg := 'HS256';
-      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH256, utl_raw.cast_to_raw(l_set_key))));
+--      return base64this(utl_raw.cast_to_varchar2(dbms_crypto.mac(utl_raw.cast_to_raw(p_string), dbms_crypto.HMAC_SH256, utl_raw.cast_to_raw(l_set_key))));
+      return base64this(utl_raw.cast_to_varchar2(oos_util_crypto.mac(p_src => utl_raw.cast_to_raw(p_string), p_typ => 3, -- oos_util_crypto.gc_hmac_sh256
+                                   p_key => utl_raw.cast_to_raw(l_set_key)
+                                )));
     end if;
 
   end encryptthis;
