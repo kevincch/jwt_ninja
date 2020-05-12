@@ -1,3 +1,11 @@
+This is a branch for Supporting Oracle 10g/11g
+
+For the original verison is using HMAC_SH256,HMAC_SH384, HMAC_SH512 of DBMS_CRYPTO package which does not support before Oracle 12.  I have modified some lines in package body by using OOS_UTIL instead 
+
+Of course, you need to install the OOS_UTIL https://github.com/OraOpenSource/oos-utils/blob/master/install/oos_utils_install.sql
+
+Actually, just run @https://observant-message.glitch.me/oos-utils/latest/oos_utils_install.sql; 
+
 = jwt_ninja
 Morten Egan <morten@plsql.ninja>
 
